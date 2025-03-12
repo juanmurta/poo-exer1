@@ -48,5 +48,7 @@ print(tv_quarto.canal)
 tv_quarto.alterar_canal('HBO')
 print(tv_quarto.canal)
 
-print(tv_quarto.marca)
+tv_quarto = TV(mark='samsung')
+tv_sala = TV(mark='LG')
 print(tv_sala.marca)
+print(tv_quarto.marca)
