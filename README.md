@@ -1,14 +1,13 @@
-# Criando uma Classe em Python - Exemplo de TV
+# Criando uma Classe em Python 
 
 ## Descrição
-Este projeto demonstra a criação de uma classe em Python usando como exemplo um modelo de Televisão (TV). Ele ilustra a estrutura básica de uma classe, o uso do método `__init__` para inicializar atributos e a criação de métodos para manipular os dados da classe.
+Este projeto demonstra a criação de classse em Python. Ele ilustra a estrutura básica de uma classe, o uso do método `__init__` para inicializar atributos e a criação de métodos para manipular os dados da classe.
 
 ## Funcionalidades Principais
-- **Criação da classe `TV`** com atributos como cor, estado (ligada ou desligada), tamanho, canal e volume.
-- **Método para mudar de canal fixo** (`mudar_canal()`) que altera para "Disney+".
-- **Método para alterar o canal dinamicamente** (`alterar_canal(novo_canal)`) para qualquer canal desejado.
-- **Instanciação de múltiplos objetos** da classe `TV` com diferentes características.
-- **Atributos personalizados** como marca e tamanho que podem ser modificados após a criação do objeto.
+- **Criação da classe com atributos
+- **Criação de Métodos
+- **Instanciação de múltiplos objetos** das classes com diferentes características.
+- **Atributos personalizados** que podem ser modificados após a criação do objeto.
 
 ## Como Contribuir
 1. Faça um fork do repositório.
