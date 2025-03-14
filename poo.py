@@ -52,3 +52,36 @@ tv_quarto = TV(mark='samsung')
 tv_sala = TV(mark='LG')
 print(tv_sala.marca)
 print(tv_quarto.marca)
+
+
+print('-' * 50)
+
+
+class Vendedor:
+
+    def __init__(self, nome):
+        self.nome = nome
+        self.vendas = 0
+        self.meta = 500
+        self.bonus = 0
+
+    def vendeu(self, quantidade_vendas):
+        self.vendas = quantidade_vendas
+        self.calcular_bonus()
+
+    def calcular_bonus(self):
+        if self.vendas > self.meta:
+            self.bonus = 30
+        else:
+            self.bonus = 0
+
+
+vendedor1 = Vendedor('Juan')
+vendedor1.vendeu(1500)
+
+vendedor2 = Vendedor('Ariany')
+vendedor2.vendeu(300)
+
+print(vendedor1.nome, vendedor2.nome)
+print(vendedor1.vendas, vendedor2.vendas)
+print(vendedor1.bonus, vendedor2.bonus)

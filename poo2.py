@@ -1,76 +1,5 @@
-from datetime import datetime
-import pytz
-
-
-class ContaCorrente:
-    """
-    Cria um objeto ContaCorrente para gerencia as contas dos clientes.
-
-    Atributos:
-    nome (str): Nome do cliente
-    cpf (str): CPF do cliente. Deve ser inserido com pontos e traços
-    agencia (str): Número da agência
-    num_conta (str): Número da conta
-    saldo (int): Saldo da conta
-    limite (int): Limite da conta
-    transacoes (list): Lista de transações realizadas na conta
-
-    """
-
-    @staticmethod
-    def _data_hora():
-        fuso_br = pytz.timezone('Brazil/East')
-        horario_br = datetime.now(fuso_br)
-        return horario_br.strftime('%d/%m/%Y %H:%M:%S')
-
-    def __init__(self, nome, cpf, agencia, num_conta):
-        self._nome = nome
-        self._cpf = cpf
-        self._saldo = 0
-        self._limite = None
-        self._agencia = agencia
-        self._num_conta = num_conta
-        self._transacoes = []
-
-    def consultar_saldo(self):
-        """
-            Exibe o saldo atual da conta do cliente.
-            Não possui parâmetros.
-        """
-        print(f'{self._nome} Seu saldo atual é de R$ {self._saldo:.2f}')
-
-    def depositar(self, valor):
-        self._saldo += valor
-        self._transacoes.append((valor, self._saldo, ContaCorrente._data_hora()))
-
-    def _limite_conta(self):
-        self._limite = -1000
-        return self._limite
-
-    def sacar_dinheiro(self, valor):
-        if self._saldo - valor < self._limite_conta():
-            print('Saldo insuficiente')
-            self.consultar_saldo()
-        else:
-            self._saldo -= valor
-            self._transacoes.append((-valor, self._saldo, ContaCorrente._data_hora()))
-
-    def consultar_limite(self):
-        print(f'Seu limite atual é de R$ {self._limite_conta():.2f}')
-
-    def consultar_historico_transacoes(self):
-        print('Histórico de transações')
-        print('Valor, Saldo, Data/Hora')
-        for transacoes in self._transacoes:
-            print(transacoes)
-
-    def transferir(self, valor, conta_destino):
-        self._saldo -= valor
-        self._transacoes.append((-valor, self._saldo, ContaCorrente._data_hora()))
-        conta_destino._saldo += valor
-        conta_destino._transacoes.append((valor, self._saldo, ContaCorrente._data_hora()))
-
-
+from ContasBancos import ContaCorrente, CartaoCredito
+from Agencias import AgenciaVirtual, AgenciaComum, AgenciaPremium
 # programa
 conta_Juan = ContaCorrente('Juan', '123.456.789-00', '1234', '123456-7')
 conta_Juan.consultar_saldo()
@@ -96,3 +25,27 @@ conta_Juan.consultar_saldo()
 conta_Ariany.consultar_saldo()
 
 help(ContaCorrente)
+
+print('-' * 50 + '\nModulo Cartao de credito')
+
+cartao_Juan = CartaoCredito('Juan', conta_Juan)
+print(cartao_Juan.conta_corrente.num_conta)
+
+print(cartao_Juan.numero)
+
+print(cartao_Juan.cod_seguranca)
+
+print(cartao_Juan.validade)
+
+cartao_Juan.senha = '1234'
+print(cartao_Juan.senha)
+
+print(conta_Juan.__dict__)
+print(cartao_Juan.__dict__)
+
+print('-' * 50 + '\nAgencia Geral')
+
+agencia_premium = AgenciaPremium('11116666', '12345678908765')
+agencia_premium.adicionar_cliente('Juan', '12345678900', 50000000)
+agencia_premium.verificar_caixa()
+print(agencia_premium.clientes)
