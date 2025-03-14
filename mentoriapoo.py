@@ -3,7 +3,7 @@ import pyautogui
 import pyperclip
 
 
-class MeuRobo():
+class MeuRobo:
 
     def __init__(self, tempo_espera):
         self.tempo_espera = tempo_espera
@@ -40,7 +40,7 @@ class MeuRobo():
         print(pyautogui.position())
 
     def extrair_link(self, x, y):
-        self.clicar(x=2685, y=587, botao='right')
+        self.clicar(x, y, botao='right')
         pyautogui.press('up')
         pyautogui.press('up')
         pyautogui.press('enter')
